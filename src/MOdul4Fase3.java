@@ -42,38 +42,41 @@ public class MOdul4Fase3 {
 		System.out.println(" no");
 		while  (resp>=1) {
 			
-			System.out.println("Introdueixi el nom del plat que vol demanà:");
+			System.out.println("Introdueixi el número del plat que vol demanà:");
 			eleccio=sc3.nextLine();
 			
 			comanda.add(eleccio);
 		
 			
-			System.out.println("Vols demanar un altre plat: 1 si 0 no");	
+			System.out.println("Si vols demanar un altre plat marca el número 1, si vols acabar de demanar, marcael número 0");	
 			resp=sc4.nextInt();
 			 
 			}
-			System.out.println(comanda.clone());
+		///solo para saber que sale en pantalla	
+		System.out.println(comanda.get(0)+" "+menu[0]);
+		//+++++++++++++++++++++++++++++++++++++++++
 			for(int i=0;i<comanda.size();i++)
 		{
-			
+			 
 			for (int j=0;j<menu.length;j++)
 			{
 				if (comanda.get(i)==(menu[j])) 
 				{
 					total+=preu[i];
-					System.out.println("comanda"+comanda.get(i)+" menu"+menu[j]);
+					
 				}
 				
-				//else {
-					//System.out.println("el producto no se puede cobrar no existe");
-					//}
 				
 				
 			}
 			
 			
 		}
-		System.out.println("acabado");
+			System.out.println("Total de la conta : "+total);
+			sc.close();
+			sc1.close();
+			sc3.close();
+			sc4.close();
 
 	}
 
