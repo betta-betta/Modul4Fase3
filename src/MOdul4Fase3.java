@@ -63,7 +63,7 @@ public class MOdul4Fase3 {
 		System.out.println(" ");
 		while  (resp==1) {
 			
-			System.out.println("Introdueixi el nombre del plat que vol demanà:");
+			System.out.println("Introdueixi el nombre del plat que vol  demanà:");
 			eleccio=sc3.nextLine();
 			
 				
