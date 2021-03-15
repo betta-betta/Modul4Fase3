@@ -1,8 +1,10 @@
+import java.io.IOException;
+import java.util.InputMismatchException;
 import java.util.ArrayList;
 import java.util.Scanner;
 
 public class MOdul4Fase3 {
-
+	
 	public static void main(String[] args) {
 		int euro5=5;
 		int euro10=10;
@@ -14,6 +16,8 @@ public class MOdul4Fase3 {
 		int total=0;
 		String eleccio;
 		int resp=1;
+		boolean verificacio=false;
+		
 		String[] menu = new String[2];
 		Integer[] preu = new Integer[2];
 		
@@ -24,13 +28,30 @@ public class MOdul4Fase3 {
 			System.out.println("Introdueix el nom del "+(i+1)+" plat del menu: ");
 		    String nomPlat= sc.nextLine();
 		    	menu[i]= nomPlat;
-		    	System.out.println("Introdueix el preu del "+(i+1)+" plat del menu: ");
-				Integer preuPlat = sc1.nextInt();	
-				preu[i]=preuPlat;
-			
-				
+		do {
+		    	try { 	
+		    		
+		    		
+		    		System.out.println("Introdueix el preu del "+(i+1)+" plat del menu: ");
+		    		
+		    		Integer preuPlat = sc1.nextInt();	
+					preu[i]=preuPlat;
+					verificacio=false;
+		    		}
+						catch(InputMismatchException e) 
+						{
+							System.out.println(" Error,solo se puede introducir un precio");
+							sc1.next();
+							
+							verificacio=true;
+						
+						} 
+		              
+					}
+						while (verificacio==true);
+		
 		}
-		for(int i=0;i<menu.length;i++) 
+			for(int i=0;i<menu.length;i++) 
 		{
 			System.out.println("EL preu del plat número "+i+" "+menu[i]+" és : "+preu[i] );
 		}
@@ -39,45 +60,48 @@ public class MOdul4Fase3 {
 		Scanner sc3=new Scanner(System.in);
 		Scanner sc4=new Scanner(System.in);
 		ArrayList<String> comanda = new  ArrayList <String>();
-		System.out.println(" no");
-		while  (resp>=1) {
+		System.out.println(" ");
+		while  (resp==1) {
 			
-			System.out.println("Introdueixi el número del plat que vol demanà:");
+			System.out.println("Introdueixi el nombre del plat que vol demanà:");
 			eleccio=sc3.nextLine();
+			
+				
 			
 			comanda.add(eleccio);
 		
 			
-			System.out.println("Si vols demanar un altre plat marca el número 1, si vols acabar de demanar, marcael número 0");	
+			System.out.println("Si vols demanar un altre plat marca el número 1, si vols acabar de demanar, introdueix cualsvol altre número");	
 			resp=sc4.nextInt();
 			 
 			}
-		///solo para saber que sale en pantalla	
-		System.out.println(comanda.get(0)+" "+menu[0]);
-		//+++++++++++++++++++++++++++++++++++++++++
-			for(int i=0;i<comanda.size();i++)
-		{
-			 
-			for (int j=0;j<menu.length;j++)
-			{
-				if (comanda.get(i)==(menu[j])) 
-				{
-					total+=preu[i];
-					
-				}
-				
-				
-				
-			}
-			
-			
-		}
-			System.out.println("Total de la conta : "+total);
-			sc.close();
-			sc1.close();
-			sc3.close();
-			sc4.close();
+		sc.close();
+		sc1.close();
+		sc3.close();
+		sc4.close();
 
+		
+		
+		
+			for(int i=0;i<=comanda.size()-1;i++)
+		{    
+				boolean trobat= false;
+				
+				for (int j=0;j<=menu.length-1;j++)
+				{	
+				
+					if (comanda.get(i).equalsIgnoreCase(menu[j])) 
+					{
+					total+=preu[j];
+					trobat=true;
+					}
+				}		
+				if (trobat==false) {
+					System.out.println("El plat "+comanda.get(i)+" no existeix");
+				}
+		}	
+			System.out.println("El total de la conta són: "+total);
+			
 	}
 
 }
